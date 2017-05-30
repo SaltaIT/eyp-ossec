@@ -1,7 +1,10 @@
 class ossec::params {
 
-  $package_name='ossec'
-  $service_name='ossec'
+  $server_package_name=[ 'ossec-hids', 'ossec-hids-server' ]
+  $server_service_name='ossec'
+
+  $agent_package_name=[ 'ossec-hids', 'ossec-hids-agent' ]
+  $agent_service_name='ossec'
 
   case $::osfamily
   {
