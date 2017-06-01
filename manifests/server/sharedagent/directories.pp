@@ -26,7 +26,7 @@ define ossec::server::sharedagent::directories(
     concat::fragment{ "shared agent ${os} directories header":
       target  => '/var/ossec/etc/shared/agent.conf',
       order   => "${os}20",
-      content => "\n    <!-- Directories to check  (perform all possible verifications) -->\n\n",
+      content => "\n    <!-- Directories to check  (perform all possible verifications) -->\n",
     }
   }
 
