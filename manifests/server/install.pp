@@ -1,6 +1,7 @@
 class ossec::server::install inherits ossec::server {
 
   include ::art
+  include ::epel
 
   if($ossec::server::manage_package)
   {
