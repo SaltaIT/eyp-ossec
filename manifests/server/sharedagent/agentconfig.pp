@@ -1,5 +1,5 @@
 # http://ossec-docs.readthedocs.io/en/latest/manual/syscheck/
-define ossec::server::sharedagent::directories(
+define ossec::server::sharedagent::agentconfig(
                                                 $os                 = 'Linux',
                                                 $syscheck_frequency = '79200',
                                               ) {
