@@ -1,6 +1,6 @@
 # http://ossec-docs.readthedocs.io/en/latest/manual/syscheck/
 define ossec::server::sharedagent::agentconfig(
-                                                $os                 = 'Linux',
+                                                $os                 = $name,
                                                 $syscheck_frequency = '79200',
                                               ) {
   concat::fragment{ "shared agent ${os} header":
