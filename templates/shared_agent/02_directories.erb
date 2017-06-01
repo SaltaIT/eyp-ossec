@@ -1,0 +1,11 @@
+
+    <directories <% -%>
+                 <%- %>realtime="<%= scope.function_bool2yesno([@realtime]) %>" <% -%>
+                 <%- %>report_changes="<%= scope.function_bool2yesno([@report_changes]) %>" <% -%>
+                 <%- if defined?(@restrict) %>restrict="<%= @restrict %>" <% end -%>
+                 <%- %>check_size="<%= scope.function_bool2yesno([@check_size]) %>" <% -%>
+                 <%- %>check_owner="<%= scope.function_bool2yesno([@check_owner]) %>" <% -%>
+                 <%- %>check_group="<%= scope.function_bool2yesno([@check_group]) %>" <% -%>
+                 <%- %>check_perm="<%= scope.function_bool2yesno([@check_perm]) %>" <% -%>
+                 <%- %>check_md5sum="<%= scope.function_bool2yesno([@check_md5sum]) %>" <% -%>
+                 <%- %>check_sha1sum="<%= scope.function_bool2yesno([@check_sha1sum]) %>"><%= @directories.join(',') %></directories>
