@@ -8,14 +8,32 @@
 #         >{{ directory.dirs }}</directories>
 #
 define ossec::server::sharedagent::directories(
-                                                $check_all      = undef,
-                                                $realtime       = undef,
-                                                $report_changes = undef,
+                                                $directories,
+                                                $realtime       = true,
+                                                $report_changes = true,
                                                 $restrict       = undef,
-                                                $check_size     = undef,
-                                                $check_sum      = undef,
-                                                $os             = 'Linux',
+                                                $check_size     = true,
+                                                $check_sha1sum  = true,
+                                                $check_md5sum   = true,
+                                                $check_owner    = true,
+                                                $check_group    = true,
+                                                $check_perm     = true,
+                                                $os             = $name,
                                               ) {
   #    <!-- Directories to check  (perform all possible verifications) -->
+  if(!defined(Concat::Fragment["shared agent ${os} directories header"]))
+  {
+    concat::fragment{ "shared agent ${os} directories header":
+      target  => '/var/ossec/etc/shared/agent.conf',
+      order   => "${os}20",
+      content => "\n    <!-- Directories to check  (perform all possible verifications) -->\n\n",
+    }
+  }
+
+  concat::fragment{ "shared agent ${os} directories ${directories}":
+    target  => '/var/ossec/etc/shared/agent.conf',
+    order   => "${os}21",
+    content => template("${module_name}/shared_agent/02_directories.erb"),
+  }
 
 }

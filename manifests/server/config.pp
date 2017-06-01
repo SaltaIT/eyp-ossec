@@ -1,10 +1,13 @@
 # concat /var/ossec/etc/shared/agent.conf
 #
 # 0 header
-# 1 agent config
-# 1 directories
-# 2 ignores
-# 3 syscheck end
+# <os>1 agent config
+# <os>2 directories
+# <os>2 ignores
+# <os>3 syscheck end
+# <os>4 localfile
+# <os>5 agent_config end
+#
 class ossec::server::config inherits ossec::server {
 
   #/var/ossec/etc/shared/agent.conf
@@ -18,14 +21,7 @@ class ossec::server::config inherits ossec::server {
   concat::fragment{ '/var/ossec/etc/shared/agent.conf header':
     target  => '/var/ossec/etc/shared/agent.conf',
     order   => '0',
-    content => template("${module_name}/shared_agent/00_sharedagent_header.erb"),
-  }
-
-  #  </syscheck>
-  concat::fragment{ '/var/ossec/etc/shared/agent.conf syscheck end':
-    target  => '/var/ossec/etc/shared/agent.conf',
-    order   => '3',
-    content => "  </syscheck>\n",
+    content => template("${module_name}/shared_agent/00_header.erb"),
   }
 
 }
