@@ -3,10 +3,10 @@
 # 0 header
 # <os>1 agent config
 # <os>2 directories
-# <os>2 ignores
-# <os>3 syscheck end
-# <os>4 localfile
-# <os>5 agent_config end
+# <os>3 ignores
+# <os>4 syscheck end
+# <os>5 localfile
+# <os>6 agent_config end
 #
 class ossec::server::config inherits ossec::server {
 
