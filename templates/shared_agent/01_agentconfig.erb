@@ -1,4 +1,4 @@
-<agent_config os="<%= @os %>">
+<agent_config<% if @os != '' %> os="<%= @os %>"<% end %>>
   <syscheck>
     <!-- Frequency that syscheck is executed -->
     <frequency><%= @syscheck_frequency %></frequency>
