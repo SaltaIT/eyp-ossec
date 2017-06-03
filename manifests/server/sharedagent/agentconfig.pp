@@ -18,7 +18,7 @@ define ossec::server::sharedagent::agentconfig(
 
   concat::fragment{ "shared agent ${os} agent_config end":
     target  => '/var/ossec/etc/shared/agent.conf',
-    order   => "${os}6",
+    order   => "${os}10",
     content => "</agent_config>\n",
   }
 
