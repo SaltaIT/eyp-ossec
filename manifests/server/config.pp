@@ -16,13 +16,26 @@ class ossec::server::config inherits ossec::server {
     ensure  => 'present',
     owner   => 'ossec',
     group   => 'ossec',
-    mode    => '0640',
+    mode    => '0644',
   }
 
   concat::fragment{ '/var/ossec/etc/shared/agent.conf header':
     target  => '/var/ossec/etc/shared/agent.conf',
     order   => '0',
     content => template("${module_name}/shared_agent/00_header.erb"),
+  }
+
+  concat { '/var/ossec/rules/local_rules.xml':
+    ensure  => 'present',
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+  }
+
+  concat::fragment{ '/var/ossec/rules/local_rules.xml header':
+    target  => '/var/ossec/rules/local_rules.xml',
+    order   => '0',
+    content => template("${module_name}/localrules/00_header.erb"),
   }
 
 }
