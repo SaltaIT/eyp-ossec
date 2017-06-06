@@ -4,7 +4,7 @@ class ossec::params {
   # /etc/rc.d/init.d/ossec-hids-authd
 
   $server_package_name=[ 'ossec-hids', 'ossec-hids-server' ]
-  $server_service_name='ossec'
+  $server_service_name_authd='ossec-hids-authd'
 
   $agent_package_name=[ 'ossec-hids', 'ossec-hids-agent' ]
   $agent_service_name='ossec'

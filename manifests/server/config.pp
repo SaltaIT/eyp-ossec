@@ -45,7 +45,7 @@ class ossec::server::config inherits ossec::server {
 
   # systemd
   systemd::service { 'ossec-hids-authd':
-    execstart => "/var/ossec/bin/ossec-authd/var/ossec/bin/ossec-authd -p ${ossec::server::authd_port} 2>&1 >> /var/ossec/logs/ossec-authd.log",
+    execstart => "/var/ossec/bin/ossec-authd -p ${ossec::server::authd_port} 2>&1 >> /var/ossec/logs/ossec-authd.log",
   }
 
 }
