@@ -7,7 +7,7 @@
 # <os>4 syscheck end
 # <os>5 localfile
 # <os>6 rootcheck
-# <os>10 agent_config end
+# <os>9 agent_config end
 #
 class ossec::server::config inherits ossec::server {
 
