@@ -1,5 +1,4 @@
 # concat /var/ossec/etc/shared/agent.conf
-#
 # 0 header
 # <os>1 agent config
 # <os>2 directories
@@ -8,6 +7,10 @@
 # <os>5 localfile
 # <os>6 rootcheck
 # <os>9 agent_config end
+#
+#
+# concat local_rules.xml
+# 0 header
 #
 class ossec::server::config inherits ossec::server {
 
@@ -39,5 +42,10 @@ class ossec::server::config inherits ossec::server {
   }
 
   #/var/ossec/etc/ossec-server.conf
+
+  # systemd
+  systemd::service { 'ossec-hids-authd':
+    execstart => "/var/ossec/bin/ossec-authd/var/ossec/bin/ossec-authd -p ${ossec::server::authd_port} 2>&1 >> /var/ossec/logs/ossec-authd.log",
+  }
 
 }
