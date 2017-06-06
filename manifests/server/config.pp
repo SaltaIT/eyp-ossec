@@ -70,7 +70,7 @@ class ossec::server::config inherits ossec::server {
   concat::fragment{ '/var/ossec/etc/ossec-server.conf tail':
     target  => '/var/ossec/etc/ossec-server.conf',
     order   => '99',
-    content => template("${module_name}/ossec-server/00_header.erb"),
+    content => template("${module_name}/ossec-server/99_end.erb"),
   }
 
   # systemd
