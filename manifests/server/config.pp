@@ -38,4 +38,6 @@ class ossec::server::config inherits ossec::server {
     content => template("${module_name}/localrules/00_header.erb"),
   }
 
+  #/var/ossec/etc/ossec-server.conf
+
 }
