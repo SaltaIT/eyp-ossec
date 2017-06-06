@@ -12,6 +12,12 @@
 # concat local_rules.xml
 # 0 header
 #
+#
+# concat /var/ossec/etc/ossec-server.conf
+# 00 header
+# 01 global
+# 99 end
+#
 class ossec::server::config inherits ossec::server {
 
   #/var/ossec/etc/shared/agent.conf
@@ -41,7 +47,31 @@ class ossec::server::config inherits ossec::server {
     content => template("${module_name}/localrules/00_header.erb"),
   }
 
-  #/var/ossec/etc/ossec-server.conf
+  # /var/ossec/etc/ossec-server.conf
+  concat { '/var/ossec/etc/ossec-server.conf':
+    ensure  => 'present',
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+  }
+
+  concat::fragment{ '/var/ossec/etc/ossec-server.conf header':
+    target  => '/var/ossec/etc/ossec-server.conf',
+    order   => '00',
+    content => template("${module_name}/ossec-server/00_header.erb"),
+  }
+
+  concat::fragment{ '/var/ossec/etc/ossec-server.conf global':
+    target  => '/var/ossec/etc/ossec-server.conf',
+    order   => '01',
+    content => template("${module_name}/ossec-server/01_global.erb"),
+  }
+
+  concat::fragment{ '/var/ossec/etc/ossec-server.conf tail':
+    target  => '/var/ossec/etc/ossec-server.conf',
+    order   => '99',
+    content => template("${module_name}/ossec-server/00_header.erb"),
+  }
 
   # systemd
   systemd::service { 'ossec-hids-authd':
