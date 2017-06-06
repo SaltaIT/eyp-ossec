@@ -13,7 +13,7 @@
 #   {% endif %}
 # </rootcheck>
 #
-define ossec::server::sharedagent::localfile(
+define ossec::server::sharedagent::rootcheck(
                                               $os              = $name,
                                               $system_audit    = [
                                                                   '/var/ossec/etc/shared/system_audit_rcl.txt',
