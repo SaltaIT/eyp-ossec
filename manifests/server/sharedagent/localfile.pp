@@ -21,9 +21,24 @@
 #
 #
 define ossec::server::sharedagent::localfile(
-                                              $location,
-                                              $logformat = undef,
-                                              $command   = undef,
-                                              $os        = $name,
+                                              $logformat,
+                                              $location = undef,
+                                              $command  = undef,
+                                              $os       = $name,
                                             ) {
+  #  <!-- Files to monitor (localfiles) -->
+  if(!defined(Concat::Fragment["shared agent ${os} localfile header"]))
+  {
+    concat::fragment{ "shared agent ${os} localfile header":
+      target  => '/var/ossec/etc/shared/agent.conf',
+      order   => "${os}50",
+      content => "\n  <!-- Files to monitor (localfiles) -->\n",
+    }
+  }
+
+  concat::fragment{ "shared agent ${os} localfile ${location} ${command} ${logformat}":
+    target  => '/var/ossec/etc/shared/agent.conf',
+    order   => "${os}51",
+    content => template("${module_name}/shared_agent/05_localfile.erb"),
+  }
 }

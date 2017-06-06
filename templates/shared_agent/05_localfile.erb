@@ -1,0 +1,10 @@
+  <localfile>
+
+    <log_format><%= @logformat %></log_format>
+    <%- if defined?(@location) -%>
+    <location><%= @location %></location>
+    <%- end -%>
+    <%- if defined?(@command) -%>
+    <command><%= @command %></command>
+    <%- end -%>
+  </localfile>
