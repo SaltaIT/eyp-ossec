@@ -28,6 +28,9 @@
 # 11 igonore
 # 12 </syscheck>
 # 13 rootcheck
+# 14 global
+# 15 remote
+# 16 alerts
 # 99 end
 #
 class ossec::server::config inherits ossec::server {
@@ -107,6 +110,30 @@ class ossec::server::config inherits ossec::server {
     target  => '/var/ossec/etc/ossec-server.conf',
     order   => "13",
     content => template("${module_name}/ossec-server/13_rootcheck.erb"),
+  }
+
+  concat::fragment{ "server global end":
+    target  => '/var/ossec/etc/ossec-server.conf',
+    order   => "14a",
+    content => "\n  <global>\n",
+  }
+
+  concat::fragment{ "server global end":
+    target  => '/var/ossec/etc/ossec-server.conf',
+    order   => "14c",
+    content => "\n  </global>\n",
+  }
+
+  concat::fragment{ "server remote end":
+    target  => '/var/ossec/etc/ossec-server.conf',
+    order   => "15a",
+    content => "\n  <remote>\n",
+  }
+
+  concat::fragment{ "server remote end":
+    target  => '/var/ossec/etc/ossec-server.conf',
+    order   => "15c",
+    content => "\n  </remote>\n",
   }
 
   concat::fragment{ '/var/ossec/etc/ossec-server.conf tail':
