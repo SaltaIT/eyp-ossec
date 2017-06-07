@@ -90,10 +90,10 @@ class ossec::server::config inherits ossec::server {
     content => "\n  <syscheck>\n",
   }
 
-  concat::fragment{ "server ${os} syscheck header":
+  concat::fragment{ "server ${os} syscheck frequency":
     target  => '/var/ossec/etc/ossec-server.conf',
-    order   => "08",
-    content => "\n    <frequency>${syscheck_frequency}</frequency>\n",
+    order   => "09",
+    content => "    <frequency>${syscheck_frequency}</frequency>\n",
   }
 
   concat::fragment{ "server ${os} syscheck end":
