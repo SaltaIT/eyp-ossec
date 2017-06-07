@@ -16,6 +16,12 @@
 # concat /var/ossec/etc/ossec-server.conf
 # 00 header
 # 01 global
+# 02 <email_alerts>
+# 03 email entries
+# 04 </email_alerts>
+# 05 <rules>
+# 06 rules entries
+# 07 </rules>
 # 99 end
 #
 class ossec::server::config inherits ossec::server {
@@ -67,11 +73,19 @@ class ossec::server::config inherits ossec::server {
     content => template("${module_name}/ossec-server/01_global.erb"),
   }
 
+  concat::fragment{ '/var/ossec/etc/ossec-server.conf rules':
+    target  => '/var/ossec/etc/ossec-server.conf',
+    order   => '06',
+    content => template("${module_name}/ossec-server/06_rules.erb"),
+  }
+
   concat::fragment{ '/var/ossec/etc/ossec-server.conf tail':
     target  => '/var/ossec/etc/ossec-server.conf',
     order   => '99',
     content => template("${module_name}/ossec-server/99_end.erb"),
   }
+
+
 
   # systemd
   systemd::service { 'ossec-hids-authd':
