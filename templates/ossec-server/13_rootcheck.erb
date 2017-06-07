@@ -1,0 +1,8 @@
+
+  <rootcheck>
+    <rootkit_files><%= @rootcheck_rootkit_files %></rootkit_files>
+    <rootkit_trojans><%= @rootcheck_rootkit_trojans %></rootkit_trojans>
+    <%- @rootcheck_system_audit.each do |val| -%>
+    <system_audit><%= val %></system_audit>
+    <%- end -%>
+  </rootcheck>

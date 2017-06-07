@@ -11,6 +11,14 @@ class ossec::server(
                       $email_to              = [ 'ossecdemo@systemadmin.es' ],
                       $smtp_server           = '127.0.0.1',
                       $syscheck_frequency    = '79200',
+                      $rootcheck_system_audit    = [
+                                          '/var/ossec/etc/shared/system_audit_rcl.txt',
+                                          '/var/ossec/etc/shared/cis_debian_linux_rcl.txt',
+                                          '/var/ossec/etc/shared/cis_rhel_linux_rcl.txt',
+                                          '/var/ossec/etc/shared/cis_rhel7_linux_rcl.txt',
+                                          ],
+                      $rootcheck_rootkit_trojans = '/var/ossec/etc/shared/rootkit_trojans.txt',
+                      $rootcheck_rootkit_files   = '/var/ossec/etc/shared/rootkit_files.txt',
                     ) inherits ossec::params{
 
   validate_re($package_ensure, [ '^present$', '^installed$', '^absent$', '^purged$', '^held$', '^latest$' ], 'Not a supported package_ensure: present/absent/purged/held/latest')
