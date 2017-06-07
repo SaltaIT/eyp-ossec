@@ -35,6 +35,14 @@
 #
 class ossec::server::config inherits ossec::server {
 
+  file { '/var/ossec/etc/shared/ar.conf':
+    ensure  => 'present',
+    owner   => 'ossec',
+    group   => 'ossec',
+    mode    => '0440',
+    content => template("${module_name}/arconf.erb"),
+  }
+
   #/var/ossec/etc/shared/agent.conf
   concat { '/var/ossec/etc/shared/agent.conf':
     ensure  => 'present',
