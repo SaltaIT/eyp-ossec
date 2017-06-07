@@ -19,7 +19,7 @@ class ossec::server(
                                           ],
                       $rootcheck_rootkit_trojans = '/var/ossec/etc/shared/rootkit_trojans.txt',
                       $rootcheck_rootkit_files   = '/var/ossec/etc/shared/rootkit_files.txt',
-                      $remote_connection = 'syslog',
+                      $remote_connection = 'secure',
                       $global_whitelist = [ $::ipaddress ],
                     ) inherits ossec::params{
 
