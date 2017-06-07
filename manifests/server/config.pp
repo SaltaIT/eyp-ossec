@@ -136,6 +136,12 @@ class ossec::server::config inherits ossec::server {
     content => template("${module_name}/ossec-server/15_remote.erb"),
   }
 
+  concat::fragment{ "server alerts":
+    target  => '/var/ossec/etc/ossec-server.conf',
+    order   => "15",
+    content => template("${module_name}/ossec-server/16_alerts.erb"),
+  }
+
   concat::fragment{ '/var/ossec/etc/ossec-server.conf tail':
     target  => '/var/ossec/etc/ossec-server.conf',
     order   => '99',

@@ -22,6 +22,8 @@ class ossec::server(
                       $remote_connection = 'syslog',
                       $remote_allowed_ips = [ '0.0.0.0' ],
                       $global_whitelist = [ $::ipaddress ],
+                      $log_alert_level = '1',
+                      $email_alert_level = '7',
                     ) inherits ossec::params{
 
   validate_re($package_ensure, [ '^present$', '^installed$', '^absent$', '^purged$', '^held$', '^latest$' ], 'Not a supported package_ensure: present/absent/purged/held/latest')
