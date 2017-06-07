@@ -104,7 +104,7 @@ class ossec::server::config inherits ossec::server {
   }
 
   concat::fragment{ "server rootcheck":
-    target  => '/var/ossec/etc/shared/agent.conf',
+    target  => '/var/ossec/etc/ossec-server.conf',
     order   => "13",
     content => template("${module_name}/ossec-server/13_rootcheck.erb"),
   }
