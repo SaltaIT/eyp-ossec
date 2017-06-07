@@ -19,6 +19,8 @@ class ossec::server(
                                           ],
                       $rootcheck_rootkit_trojans = '/var/ossec/etc/shared/rootkit_trojans.txt',
                       $rootcheck_rootkit_files   = '/var/ossec/etc/shared/rootkit_files.txt',
+                      $remote_connection = 'syslog',
+                      $global_whitelist = [ $::ipaddress ],
                     ) inherits ossec::params{
 
   validate_re($package_ensure, [ '^present$', '^installed$', '^absent$', '^purged$', '^held$', '^latest$' ], 'Not a supported package_ensure: present/absent/purged/held/latest')

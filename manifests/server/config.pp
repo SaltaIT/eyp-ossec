@@ -112,28 +112,28 @@ class ossec::server::config inherits ossec::server {
     content => template("${module_name}/ossec-server/13_rootcheck.erb"),
   }
 
-  concat::fragment{ "server global end":
+  concat::fragment{ "server global start":
     target  => '/var/ossec/etc/ossec-server.conf',
     order   => "14a",
     content => "\n  <global>\n",
   }
 
+  concat::fragment{ "server global whitelist":
+    target  => '/var/ossec/etc/ossec-server.conf',
+    order   => "14b",
+    content => template("${module_name}/ossec-server/14b_whiltelist.erb"),
+  }
+
   concat::fragment{ "server global end":
     target  => '/var/ossec/etc/ossec-server.conf',
-    order   => "14c",
+    order   => "14z",
     content => "\n  </global>\n",
   }
 
-  concat::fragment{ "server remote end":
+  concat::fragment{ "server remote":
     target  => '/var/ossec/etc/ossec-server.conf',
-    order   => "15a",
-    content => "\n  <remote>\n",
-  }
-
-  concat::fragment{ "server remote end":
-    target  => '/var/ossec/etc/ossec-server.conf',
-    order   => "15c",
-    content => "\n  </remote>\n",
+    order   => "15",
+    content => template("${module_name}/ossec-server/15_remote.erb"),
   }
 
   concat::fragment{ '/var/ossec/etc/ossec-server.conf tail':
