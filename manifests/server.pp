@@ -5,6 +5,8 @@ class ossec::server(
                       $manage_docker_service     = true,
                       $service_ensure            = 'running',
                       $service_enable            = true,
+                      $authd_service_ensure      = 'running',
+                      $authd_service_enable      = true,
                       $authd_port                = '1515',
                       $email_notification        = true,
                       $email_from                = 'ossec@systemadmin.es',

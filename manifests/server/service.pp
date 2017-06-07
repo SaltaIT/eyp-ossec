@@ -16,8 +16,8 @@ class ossec::server::service inherits ossec::server {
     if($ossec::server::manage_service)
     {
       service { $ossec::params::server_service_name_authd:
-        ensure => $ossec::server::service_ensure,
-        enable => $ossec::server::service_enable,
+        ensure => $ossec::server::authd_service_ensure,
+        enable => $ossec::server::authd_service_enable,
       }
 
       ->
