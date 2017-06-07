@@ -121,7 +121,7 @@ class ossec::server::config inherits ossec::server {
   concat::fragment{ "server global whitelist":
     target  => '/var/ossec/etc/ossec-server.conf',
     order   => "14b",
-    content => template("${module_name}/ossec-server/14b_whiltelist.erb"),
+    content => template("${module_name}/ossec-server/14b_whitelist.erb"),
   }
 
   concat::fragment{ "server global end":
