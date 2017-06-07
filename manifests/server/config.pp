@@ -100,7 +100,7 @@ class ossec::server::config inherits ossec::server {
   concat::fragment{ "server syscheck end":
     target  => '/var/ossec/etc/ossec-server.conf',
     order   => "12",
-    content => "\n  <syscheck>\n",
+    content => "\n  </syscheck>\n",
   }
 
   concat::fragment{ "server rootcheck":
