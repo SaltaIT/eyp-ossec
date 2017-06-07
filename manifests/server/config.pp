@@ -78,4 +78,8 @@ class ossec::server::config inherits ossec::server {
     execstart => "/var/ossec/bin/ossec-authd -p ${ossec::server::authd_port} 2>&1 >> /var/ossec/logs/ossec-authd.log",
   }
 
+  systemd::sysvwrapper { 'ossec-hids':
+    initscript => '/var/ossec/bin/ossec-control',
+  }
+
 }

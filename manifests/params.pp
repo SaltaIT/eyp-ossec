@@ -5,6 +5,7 @@ class ossec::params {
 
   $server_package_name=[ 'ossec-hids', 'ossec-hids-server' ]
   $server_service_name_authd='ossec-hids-authd'
+  $server_service_name='ossec-hids'
 
   $agent_package_name=[ 'ossec-hids', 'ossec-hids-agent' ]
   $agent_service_name='ossec'

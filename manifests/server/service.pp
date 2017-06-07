@@ -19,6 +19,13 @@ class ossec::server::service inherits ossec::server {
         ensure => $ossec::server::service_ensure,
         enable => $ossec::server::service_enable,
       }
+
+      ->
+
+      service { $ossec::params::server_service_name:
+        ensure => $ossec::server::service_ensure,
+        enable => $ossec::server::service_enable,
+      }
     }
   }
 }
