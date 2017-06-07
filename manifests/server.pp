@@ -10,6 +10,7 @@ class ossec::server(
                       $email_from            = 'ossec@systemadmin.es',
                       $email_to              = [ 'ossecdemo@systemadmin.es' ],
                       $smtp_server           = '127.0.0.1',
+                      $syscheck_frequency    = '79200',
                     ) inherits ossec::params{
 
   validate_re($package_ensure, [ '^present$', '^installed$', '^absent$', '^purged$', '^held$', '^latest$' ], 'Not a supported package_ensure: present/absent/purged/held/latest')

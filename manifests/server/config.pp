@@ -22,6 +22,11 @@
 # 05 <rules>
 # 06 rules entries
 # 07 </rules>
+# 08 <syscheck>
+# 09 frequency
+# 10 directories
+# 11 igonore
+# 12 </syscheck>
 # 99 end
 #
 class ossec::server::config inherits ossec::server {
@@ -77,6 +82,24 @@ class ossec::server::config inherits ossec::server {
     target  => '/var/ossec/etc/ossec-server.conf',
     order   => '06',
     content => template("${module_name}/ossec-server/06_rules.erb"),
+  }
+
+  concat::fragment{ "server ${os} syscheck header":
+    target  => '/var/ossec/etc/ossec-server.conf',
+    order   => "08",
+    content => "\n  <syscheck>\n",
+  }
+
+  concat::fragment{ "server ${os} syscheck header":
+    target  => '/var/ossec/etc/ossec-server.conf',
+    order   => "08",
+    content => "\n    <frequency>${syscheck_frequency}</frequency>\n",
+  }
+
+  concat::fragment{ "server ${os} syscheck end":
+    target  => '/var/ossec/etc/ossec-server.conf',
+    order   => "12",
+    content => "\n  <syscheck>\n",
   }
 
   concat::fragment{ '/var/ossec/etc/ossec-server.conf tail':
