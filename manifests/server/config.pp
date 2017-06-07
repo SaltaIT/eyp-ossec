@@ -79,7 +79,7 @@ class ossec::server::config inherits ossec::server {
   }
 
   systemd::sysvwrapper { 'ossec-hids':
-    initscript => '/var/ossec/bin/ossec-control',
+    initscript => '/etc/init.d/ossec-hids',
   }
 
 }
