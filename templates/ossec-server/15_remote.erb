@@ -1,4 +1,7 @@
 
   <remote>
     <connection><%= @remote_connection %></connection>
+    <%- @remote_allowed_ips.each do |val| -%>
+    <allowed-ips><%= val %></allowed-ips>
+    <%- end -%>
   </remote>
