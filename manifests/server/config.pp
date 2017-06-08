@@ -31,6 +31,9 @@
 # 14 global
 # 15 remote
 # 16 alerts
+# 17 <command>
+# 18 <active-response>
+# 19 <localfile>
 # 99 end
 #
 class ossec::server::config inherits ossec::server {
@@ -146,8 +149,38 @@ class ossec::server::config inherits ossec::server {
 
   concat::fragment{ "server alerts":
     target  => '/var/ossec/etc/ossec-server.conf',
-    order   => "15",
+    order   => "16",
     content => template("${module_name}/ossec-server/16_alerts.erb"),
+  }
+
+  if ($ossec::server::add_default_commands)
+  {
+    # 17 <command>
+    concat::fragment{ "command alerts":
+      target  => '/var/ossec/etc/ossec-server.conf',
+      order   => "17",
+      content => template("${module_name}/ossec-server/17_default_commands.erb"),
+    }
+  }
+
+  if ($ossec::server::add_default_activeresponses)
+  {
+    # 18 <activeresponse>
+    concat::fragment{ "activeresponse alerts":
+      target  => '/var/ossec/etc/ossec-server.conf',
+      order   => "18",
+      content => template("${module_name}/ossec-server/18_default_activeresponse.erb"),
+    }
+  }
+
+  if ($ossec::server::add_default_localfiles)
+  {
+    # 19 <localfile>
+    concat::fragment{ "localfile alerts":
+      target  => '/var/ossec/etc/ossec-server.conf',
+      order   => "19",
+      content => template("${module_name}/ossec-server/19_default_localfile.erb"),
+    }
   }
 
   concat::fragment{ '/var/ossec/etc/ossec-server.conf tail':

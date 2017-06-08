@@ -24,6 +24,9 @@ class ossec::server(
                       $global_whitelist          = [ '127.0.0.1' ],
                       $log_alert_level           = '1',
                       $email_alert_level         = '7',
+                      $add_default_commands = true,
+                      $add_default_activeresponses = true,
+                      $add_default_localfiles = true,
                     ) inherits ossec::params{
 
   validate_re($package_ensure, [ '^present$', '^installed$', '^absent$', '^purged$', '^held$', '^latest$' ], 'Not a supported package_ensure: present/absent/purged/held/latest')
