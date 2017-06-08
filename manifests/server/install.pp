@@ -6,7 +6,8 @@ class ossec::server::install inherits ossec::server {
   if($ossec::server::manage_package)
   {
     package { $ossec::params::server_package_name:
-      ensure => $ossec::server::package_ensure,
+      ensure  => $ossec::server::package_ensure,
+      require => Class[ [ '::art', '::epel' ] ],
     }
   }
 

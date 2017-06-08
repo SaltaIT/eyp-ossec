@@ -1,0 +1,10 @@
+<!-- puppet managed file -->
+
+<ossec_config>
+  <client>
+    <server-ip><%= @server %></server-ip>
+    <%- if defined?(@ossec_profile) -%>
+    <config-profile><%= @ossec_profile %></config-profile>
+    <%- end -%>
+  </client>
+</ossec_config>
