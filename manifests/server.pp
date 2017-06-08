@@ -20,7 +20,7 @@ class ossec::server(
                       $rootcheck_rootkit_trojans = '/var/ossec/etc/shared/rootkit_trojans.txt',
                       $rootcheck_rootkit_files   = '/var/ossec/etc/shared/rootkit_files.txt',
                       $remote_connection         = 'secure',
-                      $remote_allowed_ips        = [ '0.0.0.0' ],
+                      $remote_allowed_ips        = [],
                       $global_whitelist          = [ '127.0.0.1' ],
                       $log_alert_level           = '1',
                       $email_alert_level         = '7',

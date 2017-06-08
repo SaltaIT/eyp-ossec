@@ -21,7 +21,7 @@ class ossec::server::service inherits ossec::server {
       }
 
       ->
-
+      # we need to register at least one client to be able to start ossec-hids
       service { $ossec::params::server_service_name:
         ensure => $ossec::server::service_ensure,
         enable => $ossec::server::service_enable,
