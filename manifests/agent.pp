@@ -6,6 +6,7 @@ class ossec::agent(
                     $service_ensure        = 'running',
                     $service_enable        = true,
                     $server                = '127.0.0.1',
+                    $authd_port            = '1515',
                     $ossec_profile         = undef,
                   ) inherits ossec::params{
 
