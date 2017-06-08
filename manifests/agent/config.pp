@@ -35,7 +35,8 @@ class ossec::agent::config inherits ossec::agent {
   }
 
   systemd::sysvwrapper { 'ossec-hids':
-    initscript => '/var/ossec/bin/ossec-control',
+    initscript           => '/var/ossec/bin/ossec-control',
+    wait_time_on_startup => '5s',
   }
 
 }
