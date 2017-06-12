@@ -6,4 +6,7 @@
     <allowed-ips><%= val %></allowed-ips>
     <%- end -%>
     <%- end -%>
+    <%- if defined?(@remote_local_ip) -%>
+    <local_ip><%= @remote_local_ip %></local_ip>
+    <%- end -%>
   </remote>

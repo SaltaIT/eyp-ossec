@@ -21,6 +21,7 @@ class ossec::server(
                       $rootcheck_rootkit_files     = '/var/ossec/etc/shared/rootkit_files.txt',
                       $remote_connection           = 'secure',
                       $remote_allowed_ips          = [],
+                      $remote_local_ip             = undef,
                       $global_whitelist            = [ '127.0.0.1' ],
                       $log_alert_level             = '1',
                       $email_alert_level           = '7',
