@@ -1,1 +1,7 @@
-    <ignore>/etc/mtab</ignore>
+<% if @file.kind_of?(Array) -%>
+<% @file.each do |val| -%>
+    <ignore><%= val %></ignore
+<% end -%>
+<% else -%>
+    <ignore><%= @file %></ignore>
+<% end -%>
