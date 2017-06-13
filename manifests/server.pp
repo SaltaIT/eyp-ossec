@@ -1,3 +1,8 @@
+#
+# http://ossec-docs.readthedocs.io/en/latest/syntax/ossec_config.html
+# http://ossec-docs.readthedocs.io/en/latest/syntax/head_ossec_config.remote.html
+# http://ossec-docs.readthedocs.io/en/latest/syntax/head_ossec_config.alerts.html
+#
 class ossec::server(
                       $manage_package              = true,
                       $package_ensure              = 'installed',
