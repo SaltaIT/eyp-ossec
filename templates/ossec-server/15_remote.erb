@@ -1,0 +1,12 @@
+
+  <remote>
+    <connection><%= @remote_connection %></connection>
+    <%- if @remote_allowed_ips.any? -%>
+    <%- @remote_allowed_ips.each do |val| -%>
+    <allowed-ips><%= val %></allowed-ips>
+    <%- end -%>
+    <%- end -%>
+    <%- if defined?(@remote_local_ip) -%>
+    <local_ip><%= @remote_local_ip %></local_ip>
+    <%- end -%>
+  </remote>

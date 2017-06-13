@@ -6,7 +6,7 @@ define ossec::server::sharedagent::ignore (
                                             $os = $name,
                                           ) {
   #    <!-- Files/directories to ignore -->
-  if(!defined(Concat::Fragment["shared agent ${os} directories header"]))
+  if(!defined(Concat::Fragment["shared agent ${os} ignore header"]))
   {
     concat::fragment{ "shared agent ${os} ignore header":
       target  => '/var/ossec/etc/shared/agent.conf',

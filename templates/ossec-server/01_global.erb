@@ -1,0 +1,13 @@
+
+  <global>
+    <%- if @email_notification -%>
+    <email_notification>yes</email_notification>
+    <%- @email_to.each do |val| -%>
+    <email_to><%= val %></email_to>
+    <%- end -%>
+    <smtp_server><%= @smtp_server %></smtp_server>
+    <email_from><%= @email_from %></email_from>
+    <%- else -%>
+    <email_notification>no</email_notification>
+    <%- end -%>
+  </global>
