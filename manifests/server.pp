@@ -1,4 +1,6 @@
 #
+# docs config
+#
 # http://ossec-docs.readthedocs.io/en/latest/syntax/ossec_config.html
 # http://ossec-docs.readthedocs.io/en/latest/syntax/head_ossec_config.remote.html
 # http://ossec-docs.readthedocs.io/en/latest/syntax/head_ossec_config.alerts.html
