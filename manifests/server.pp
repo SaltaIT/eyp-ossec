@@ -35,6 +35,7 @@ class ossec::server(
                       $add_default_commands        = true,
                       $add_default_activeresponses = true,
                       $add_default_localfiles      = true,
+                      $selinux_dir                 = '/usr/local/src/selinux/ossec_server',
                     ) inherits ossec::params{
 
   validate_re($package_ensure, [ '^present$', '^installed$', '^absent$', '^purged$', '^held$', '^latest$' ], 'Not a supported package_ensure: present/absent/purged/held/latest')
