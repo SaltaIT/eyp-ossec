@@ -56,18 +56,18 @@ class ossec::server::config inherits ossec::server {
           path    => '/bin:/sbin:/usr/bin:/usr/sbin',
         }
 
-        file { "${ossec::agent::selinux_dir}/logrotate_ossec_server.te":
+        file { "${ossec::server::selinux_dir}/logrotate_ossec_server.te":
           ensure  => 'present',
           owner   => 'root',
           group   => 'root',
           mode    => '0400',
-          content => template("${module_name}/agent/selinux/policy.erb"),
+          content => template("${module_name}/ossec-server/selinux/policy.erb"),
           require => Exec['logrotate_ossec_server selinux dir'],
         }
 
         selinux::semodule { 'logrotate_ossec_server':
-          basedir => $ossec::agent::selinux_dir,
-          require => File["${ossec::agent::selinux_dir}/logrotate_ossec_agent.te"],
+          basedir => $ossec::server::selinux_dir,
+          require => File["${ossec::server::selinux_dir}/logrotate_ossec_server.te"],
         }
       }
       'disabled': { }
