@@ -15,6 +15,7 @@ class ossec::agent::config inherits ossec::agent {
         exec { 'logrotate_ossec_agent selinux dir':
           command => "mkdir -p ${ossec::agent::selinux_dir}",
           creates => $ossec::agent::selinux_dir,
+          path    => '/bin:/sbin:/usr/bin:/usr/sbin',
         }
 
         file { "${ossec::agent::selinux_dir}/logrotate_ossec_agent.te":

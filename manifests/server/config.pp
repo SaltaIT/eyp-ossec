@@ -53,6 +53,7 @@ class ossec::server::config inherits ossec::server {
         exec { 'logrotate_ossec_server selinux dir':
           command => "mkdir -p ${ossec::server::selinux_dir}",
           creates => $ossec::server::selinux_dir,
+          path    => '/bin:/sbin:/usr/bin:/usr/sbin',
         }
 
         file { "${ossec::agent::selinux_dir}/logrotate_ossec_server.te":
