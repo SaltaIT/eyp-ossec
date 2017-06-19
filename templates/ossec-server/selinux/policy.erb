@@ -1,0 +1,14 @@
+module logrotate_ossec_server 1.0.0;
+
+require {
+        type var_t;
+        type logrotate_exec_t;
+        type logrotate_t;
+        class dir { read remove_name add_name };
+        class file { rename setattr read create write getattr unlink open };
+}
+
+#============= logrotate_t ==============
+allow logrotate_t logrotate_exec_t:file { rename create unlink setattr };
+allow logrotate_t var_t:dir { read remove_name add_name };
+allow logrotate_t var_t:file { read write getattr open };

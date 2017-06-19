@@ -38,6 +38,43 @@
 #
 class ossec::server::config inherits ossec::server {
 
+  if(defined(Class['::selinux']))
+  {
+    $current_selinux_mode = $::selinux? {
+      bool2boolstr(false) => 'disabled',
+      false               => 'disabled',
+      default             => $::selinux_current_mode,
+    }
+
+    case $current_selinux_mode
+    {
+      /^(enforcing|permissive)$/:
+      {
+        exec { 'logrotate_ossec_server selinux dir':
+          command => "mkdir -p ${ossec::server::selinux_dir}",
+          creates => $ossec::server::selinux_dir,
+          path    => '/bin:/sbin:/usr/bin:/usr/sbin',
+        }
+
+        file { "${ossec::server::selinux_dir}/logrotate_ossec_server.te":
+          ensure  => 'present',
+          owner   => 'root',
+          group   => 'root',
+          mode    => '0400',
+          content => template("${module_name}/ossec-server/selinux/policy.erb"),
+          require => Exec['logrotate_ossec_server selinux dir'],
+        }
+
+        selinux::semodule { 'logrotate_ossec_server':
+          basedir => $ossec::server::selinux_dir,
+          require => File["${ossec::server::selinux_dir}/logrotate_ossec_server.te"],
+        }
+      }
+      'disabled': { }
+      default: { fail('this should not happen') }
+    }
+  }
+
   file { '/var/ossec/etc/shared/ar.conf':
     ensure  => 'present',
     owner   => 'ossec',

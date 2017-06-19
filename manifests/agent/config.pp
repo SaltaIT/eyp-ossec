@@ -1,5 +1,42 @@
 class ossec::agent::config inherits ossec::agent {
 
+  if(defined(Class['::selinux']))
+  {
+    $current_selinux_mode = $::selinux? {
+      bool2boolstr(false) => 'disabled',
+      false               => 'disabled',
+      default             => $::selinux_current_mode,
+    }
+
+    case $current_selinux_mode
+    {
+      /^(enforcing|permissive)$/:
+      {
+        exec { 'logrotate_ossec_agent selinux dir':
+          command => "mkdir -p ${ossec::agent::selinux_dir}",
+          creates => $ossec::agent::selinux_dir,
+          path    => '/bin:/sbin:/usr/bin:/usr/sbin',
+        }
+
+        file { "${ossec::agent::selinux_dir}/logrotate_ossec_agent.te":
+          ensure  => 'present',
+          owner   => 'root',
+          group   => 'root',
+          mode    => '0400',
+          content => template("${module_name}/agent/selinux/policy.erb"),
+          require => Exec['logrotate_ossec_agent selinux dir'],
+        }
+
+        selinux::semodule { 'logrotate_ossec_agent':
+          basedir => $ossec::agent::selinux_dir,
+          require => File["${ossec::agent::selinux_dir}/logrotate_ossec_agent.te"],
+        }
+      }
+      'disabled': { }
+      default: { fail('this should not happen') }
+    }
+  }
+
   file { '/var/ossec/etc/ossec-agent.conf':
     ensure  => 'present',
     owner   => 'ossec',
