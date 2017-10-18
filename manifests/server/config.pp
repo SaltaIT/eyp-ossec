@@ -112,10 +112,10 @@ class ossec::server::config inherits ossec::server {
 
   # /var/ossec/etc/ossec-server.conf
   concat { '/var/ossec/etc/ossec-server.conf':
-    ensure  => 'present',
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
+    ensure => 'present',
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0644',
   }
 
   concat::fragment{ '/var/ossec/etc/ossec-server.conf header':
