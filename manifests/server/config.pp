@@ -85,10 +85,10 @@ class ossec::server::config inherits ossec::server {
 
   #/var/ossec/etc/shared/agent.conf
   concat { '/var/ossec/etc/shared/agent.conf':
-    ensure  => 'present',
-    owner   => 'ossec',
-    group   => 'ossec',
-    mode    => '0644',
+    ensure => 'present',
+    owner  => 'ossec',
+    group  => 'ossec',
+    mode   => '0644',
   }
 
   concat::fragment{ '/var/ossec/etc/shared/agent.conf header':
@@ -136,55 +136,55 @@ class ossec::server::config inherits ossec::server {
     content => template("${module_name}/ossec-server/06_rules.erb"),
   }
 
-  concat::fragment{ "server syscheck header":
+  concat::fragment{ 'server syscheck header':
     target  => '/var/ossec/etc/ossec-server.conf',
     order   => "08",
     content => "\n  <syscheck>\n",
   }
 
-  concat::fragment{ "server syscheck frequency":
+  concat::fragment{ 'server syscheck frequency':
     target  => '/var/ossec/etc/ossec-server.conf',
     order   => "09",
-    content => "    <frequency>${syscheck_frequency}</frequency>\n",
+    content => "    <frequency>${ossec::server::syscheck_frequency}</frequency>\n",
   }
 
-  concat::fragment{ "server syscheck end":
+  concat::fragment{ 'server syscheck end':
     target  => '/var/ossec/etc/ossec-server.conf',
     order   => "12",
     content => "\n  </syscheck>\n",
   }
 
-  concat::fragment{ "server rootcheck":
+  concat::fragment{ 'server rootcheck':
     target  => '/var/ossec/etc/ossec-server.conf',
     order   => "13",
     content => template("${module_name}/ossec-server/13_rootcheck.erb"),
   }
 
-  concat::fragment{ "server global start":
+  concat::fragment{ 'server global start':
     target  => '/var/ossec/etc/ossec-server.conf',
     order   => "14a",
     content => "\n  <global>\n",
   }
 
-  concat::fragment{ "server global whitelist":
+  concat::fragment{ 'server global whitelist':
     target  => '/var/ossec/etc/ossec-server.conf',
     order   => "14b",
     content => template("${module_name}/ossec-server/14b_whitelist.erb"),
   }
 
-  concat::fragment{ "server global end":
+  concat::fragment{ 'server global end':
     target  => '/var/ossec/etc/ossec-server.conf',
     order   => "14z",
     content => "\n  </global>\n",
   }
 
-  concat::fragment{ "server remote":
+  concat::fragment{ 'server remote':
     target  => '/var/ossec/etc/ossec-server.conf',
     order   => "15",
     content => template("${module_name}/ossec-server/15_remote.erb"),
   }
 
-  concat::fragment{ "server alerts":
+  concat::fragment{ 'server alerts':
     target  => '/var/ossec/etc/ossec-server.conf',
     order   => "16",
     content => template("${module_name}/ossec-server/16_alerts.erb"),
@@ -193,7 +193,7 @@ class ossec::server::config inherits ossec::server {
   if ($ossec::server::add_default_commands)
   {
     # 17 <command>
-    concat::fragment{ "command alerts":
+    concat::fragment{ 'command alerts':
       target  => '/var/ossec/etc/ossec-server.conf',
       order   => "17",
       content => template("${module_name}/ossec-server/17_default_commands.erb"),
@@ -203,7 +203,7 @@ class ossec::server::config inherits ossec::server {
   if ($ossec::server::add_default_activeresponses)
   {
     # 18 <activeresponse>
-    concat::fragment{ "activeresponse alerts":
+    concat::fragment{ 'activeresponse alerts':
       target  => '/var/ossec/etc/ossec-server.conf',
       order   => "18",
       content => template("${module_name}/ossec-server/18_default_activeresponse.erb"),
@@ -213,7 +213,7 @@ class ossec::server::config inherits ossec::server {
   if ($ossec::server::add_default_localfiles)
   {
     # 19 <localfile>
-    concat::fragment{ "localfile alerts":
+    concat::fragment{ 'localfile alerts':
       target  => '/var/ossec/etc/ossec-server.conf',
       order   => "19",
       content => template("${module_name}/ossec-server/19_default_localfile.erb"),
