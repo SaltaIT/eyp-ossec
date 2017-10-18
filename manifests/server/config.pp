@@ -98,10 +98,10 @@ class ossec::server::config inherits ossec::server {
   }
 
   concat { '/var/ossec/rules/local_rules.xml':
-    ensure  => 'present',
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
+    ensure => 'present',
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0644',
   }
 
   concat::fragment{ '/var/ossec/rules/local_rules.xml header':
