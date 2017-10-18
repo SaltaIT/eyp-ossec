@@ -2,7 +2,7 @@
 
 ## 0.1.2
 
-* added host-deny.sh entrie to **ar.conf**
+* added host-deny.sh entry to **ar.conf**
 
 ## 0.1.1
 
