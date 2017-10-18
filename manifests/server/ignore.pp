@@ -1,6 +1,8 @@
 #
 #    <ignore>/etc/mtab</ignore>
 #
+# puppet2sitepp @ossecserverignores
+#
 define ossec::server::ignore(
                               $file,
                             ) {

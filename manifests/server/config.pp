@@ -34,6 +34,7 @@
 # 17 <command>
 # 18 <active-response>
 # 19 <localfile>
+# 20 <syslog_output>
 # 99 end
 #
 class ossec::server::config inherits ossec::server {

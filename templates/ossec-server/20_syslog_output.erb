@@ -1,0 +1,11 @@
+
+  <syslog_output>
+    <server><%= @syslog_server %></server>
+    <port><%= @port %></port>
+    <%- if defined?(@format) -%>
+    <format><%= @format %></format>
+    <%- end -%>
+    <%- if defined?(@level) -%>
+    <level><%= @level %></level>
+    <%- end -%>
+  </syslog_output>

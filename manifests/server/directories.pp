@@ -7,6 +7,9 @@
 #         {% if directory.check_sum is defined %}check_sum="{{ directory.check_sum }}"{% endif %}
 #         >{{ directory.dirs }}</directories>
 #
+#
+# puppet2sitepp @ossecserverdirectories
+#
 define ossec::server::directories (
                                     $directories,
                                     $realtime       = true,
