@@ -8,7 +8,38 @@ describe 'ossec class' do
     it 'should work with no errors' do
       pp = <<-EOF
 
-      class { 'ossec': }
+      class { 'ossec::server': }
+
+    	ossec::server::directories { 'server':
+    		directories => [ '/etc', '/var/log' ],
+    	}
+
+    	ossec::server::sharedagent::agentconfig { 'generic':
+    		os => '',
+    	}
+
+    	ossec::server::sharedagent::agentconfig { 'Linux':
+    	}
+
+    	ossec::server::sharedagent::directories { 'Linux':
+    		directories => [ '/etc', '/var/log' ],
+    	}
+
+    	ossec::server::sharedagent::ignore { 'Linux':
+    		file => '/etc/mtab',
+    	}
+
+    	ossec::server::sharedagent::localfile { 'Linux':
+    		logformat => 'syslog',
+    		location => '/var/log/messages',
+    	}
+
+    	ossec::server::sharedagent::rootcheck { 'Linux':
+    	}
+
+      class { 'ossec::agent':
+        server => '192.168.56.103',
+      }
 
       EOF
 
