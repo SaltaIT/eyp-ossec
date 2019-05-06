@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.4
+
+* Updated metadata for **eyp-systemd 0.2.0**
+
 ## 0.1.3
 
 * added syslog_output: **ossec::server::syslogoutput**
