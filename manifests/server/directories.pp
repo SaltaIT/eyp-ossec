@@ -7,6 +7,9 @@
 #         {% if directory.check_sum is defined %}check_sum="{{ directory.check_sum }}"{% endif %}
 #         >{{ directory.dirs }}</directories>
 #
+#
+# puppet2sitepp @ossecserverdirectories
+#
 define ossec::server::directories (
                                     $directories,
                                     $realtime       = true,
@@ -21,18 +24,18 @@ define ossec::server::directories (
                                   ) {
 
   #    <!-- Directories to check  (perform all possible verifications) -->
-  if(!defined(Concat::Fragment["server directories header"]))
+  if(!defined(Concat::Fragment['server directories header']))
   {
-    concat::fragment{ "server directories header":
+    concat::fragment{ 'server directories header':
       target  => '/var/ossec/etc/ossec-server.conf',
-      order   => "10a",
+      order   => '10a',
       content => "\n    <!-- Directories to check  (perform all possible verifications) -->\n",
     }
   }
 
   concat::fragment{ "server directories ${directories}":
     target  => '/var/ossec/etc/ossec-server.conf',
-    order   => "10b",
+    order   => '10b',
     content => template("${module_name}/shared_agent/02_directories.erb"),
   }
 

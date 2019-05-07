@@ -3,12 +3,14 @@ require_relative './version.rb'
 
 describe 'ossec class' do
 
-  context 'basic setup' do
+  context 'agent setup' do
     # Using puppet_apply as a helper
     it 'should work with no errors' do
       pp = <<-EOF
 
-      class { 'ossec': }
+      class { 'ossec::agent':
+        server => '192.168.56.103',
+      }
 
       EOF
 

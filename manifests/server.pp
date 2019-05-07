@@ -38,8 +38,6 @@ class ossec::server(
                       $selinux_dir                 = '/usr/local/src/selinux/ossec_server',
                     ) inherits ossec::params{
 
-  validate_re($package_ensure, [ '^present$', '^installed$', '^absent$', '^purged$', '^held$', '^latest$' ], 'Not a supported package_ensure: present/absent/purged/held/latest')
-
   class { '::ossec::server::install': }
   -> class { '::ossec::server::config': }
   ~> class { '::ossec::server::service': }
